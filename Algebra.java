@@ -19,11 +19,11 @@ public class Algebra {
    		System.out.println(div(12,3));   // 12 / 3    			   4
    		System.out.println(div(5,5));    // 5 / 5                    1
    		System.out.println(div(25,7));   // 25 / 7      			   3
-   		System.out.println(mod(25,7));   // 25 % 7				   4
+   		System.out.println(mod(25,7));   // 25 % 7				   4  ===
    		System.out.println(mod(120,6));  // 120 % 6  				   0  
    		System.out.println(sqrt(36));								//     6
 		System.out.println(sqrt(263169));							//     513
-   		System.out.println(sqrt(76123));
+   		System.out.println(sqrt(76123));						    //     275
 	}  
 
 	// Returns x1 + x2
@@ -94,6 +94,11 @@ public class Algebra {
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
+		boolean xIsPositive = x > 0;
+		if (!xIsPositive){
+			x = minus(0, x);
+		}
+
 		int answer = 1;
 		if (n == 0){
 			return 1;
@@ -103,6 +108,11 @@ public class Algebra {
 				n --;
 			}
 		}
+
+		if (!xIsPositive && (mod(n,2) == 0)){
+			answer = minus(0, answer);
+		}
+
 		return answer;
 	}
 
@@ -121,7 +131,7 @@ public class Algebra {
 		if (!x2IsPositive){
 			x2 = minus(0, x2);
 		}
-
+		
 		while (x1 >= x2){
 			counter ++;
 			x1 = minus(x1, x2);
@@ -136,18 +146,42 @@ public class Algebra {
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// 25 % 5      8 % 7
-		int counter = 0;
+		// 25 % 5      31 % 7      31 - ((31 / 7)* 7)
+		int answer = 0;			 
 		boolean x1IsPositive = x1 > 0;
 		boolean x2IsPositive = x2 > 0;
+		if (!x1IsPositive){
+			x1 = minus(0, x1);
+		}
+		if (!x2IsPositive){
+			x2 = minus(0, x2);
+		}
 
-		
-		return 0;
+		answer = minus(x2,times(div(x2,x1), x1));
+
+		if ((!x1IsPositive && x2IsPositive) || (!x1IsPositive && !x2IsPositive) ){
+			answer = minus(0,answer);
+		}
+
+		return answer;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		double epsilon = 0.01;
+		double g = div(x,2);
+		int abs = minus(pow((int)g,(int)g), x);
+		if (abs < 0){
+			abs = minus(0,abs);
+		}
+		while(abs > epsilon){
+			g = minus((int)g,div((minus(times((int)g,(int)g),x)),times(2,(int)g)));
+
+			abs = minus(pow((int)g,(int)g), x);
+			if (abs < 0){
+				abs = minus(0,abs);
+			}
+		}
+		return (int)g;
 	}	  	  
 }
