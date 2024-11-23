@@ -168,20 +168,18 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		double epsilon = 0.01;
-		double g = div(x,2);
-		int abs = minus(pow((int)g,(int)g), x);
-		if (abs < 0){
-			abs = minus(0,abs);
+		if (x <= 0){
+			return 0;
 		}
-		while(abs > epsilon){
-			g = minus((int)g,div((minus(times((int)g,(int)g),x)),times(2,(int)g)));
 
-			abs = minus(pow((int)g,(int)g), x);
-			if (abs < 0){
-				abs = minus(0,abs);
-			}
+		int mid = 1;
+		while(pow(mid,2) < x){
+			mid++;
 		}
-		return (int)g;
+		
+		if (pow(mid,2) == x){
+			return mid;
+		}
+		return minus(mid,1);
 	}	  	  
 }
