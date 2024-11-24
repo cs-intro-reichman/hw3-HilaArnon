@@ -145,6 +145,10 @@ public class Algebra {
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		// 25 % 5      31 % 7      31 - ((31 / 7)* 7)
+		if(x2 == 0){
+			return 0;
+		}
+
 		int answer = 0;			 
 		boolean x1IsPositive = x1 > 0;
 		boolean x2IsPositive = x2 > 0;
@@ -154,11 +158,12 @@ public class Algebra {
 		if (!x2IsPositive){
 			x2 = minus(0, x2);
 		}
-		//minus(x2, times(div(x2, x1), x1));
-		answer = minus(x2,times(div(x2,x1), x1));
-		if (answer < 0) {                               //ok???
-			answer = plus(answer, x1);  
-		}
+
+		answer = minus(x1, times(div(x1, x2), x2));
+		//answer = minus(x2,times(div(x2,x1), x1));
+		//if (answer < 0) {                               //ok???
+		//	answer = plus(answer, x1);  
+		//}
 
 		//x1 negative and x2 positive       or  x1 negative and x2 negative
 		if ((!x1IsPositive && x2IsPositive) || (!x1IsPositive && !x2IsPositive) ){
