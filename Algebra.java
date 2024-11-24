@@ -48,10 +48,6 @@ public class Algebra {
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		//1 -(-2)
-		//-1 - (-2)
-		//1 - 2
-		//-1 - 2
 		if (x2 >= 0){		         // x2 >= 0
 			while (x2 > 0) {		//Dose not metter is x1 >=0 or < 0
 				x1 --;
@@ -71,25 +67,27 @@ public class Algebra {
 		int answer = 0;
 		if (x1 == 0 || x2 == 0){						 //x1 == 0 || x2 == 0
 			return answer;
-		} else {
-			if (x2 > 0){								 //x2 > 0
-				while (x2 > 0) {
-					answer = plus(answer, x1) ;
-					x2 --;
-				}
-			} else if (x2 < 0) {  						 //x2 < 0
-				while (x2 >= 0) {
-					answer = plus(answer, x1) ;
-					x2 ++;
-				}
-				answer = minus(0, answer) ;          
-			}
+		} 
+		
+		boolean x1IsPositive = x1 > 0;
+		boolean x2IsPositive = x2 > 0;
+		if (!x1IsPositive){
+			x1 = minus(0, x1);
 		}
-		return answer;
-		// 3 * 4           
-		// 3 + 3 + 3 + 3
-		// 3 * 4 * -1
-		// 3 + 3 + 3 + 3    
+		if (!x2IsPositive){
+			x2 = minus(0, x2);
+		}
+								
+		while (x2 > 0) {
+			answer = plus(answer, x1);
+			x2 --;
+		}
+
+		if ((!x1IsPositive && x2IsPositive) || (x1IsPositive && !x2IsPositive)){ //one of them negative
+			answer = minus(0, answer);
+		}
+		
+		return answer;   
 	}
 
 	// Returns x^n (for n >= 0)

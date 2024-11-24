@@ -64,7 +64,7 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		String lowerCaseStr = "";
-		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";
+		String lowerLetters = " abcdefghijklmnopqrstuvwxyz";	  //with space because of git....
 		String special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   //without space because of git....
 		int i = 0; 
 		while(i < str.length()){
