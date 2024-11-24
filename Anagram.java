@@ -65,7 +65,7 @@ public class Anagram {
 	public static String preProcess(String str) {
 		String lowerCaseStr = "";
 		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";
-		String special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+		String special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   //without space because of git....
 		int i = 0; 
 		while(i < str.length()){
 			char ch = str.charAt(i);
