@@ -2,7 +2,7 @@
 public class LoanCalc {
 	
 	static double epsilon = 0.001;  // Approximation accuracy
-	static int iterationCounter = -1;    // Number of iterations 
+	static int iterationCounter;    // Number of iterations 
 	
 	// Gets the loan data and computes the periodical payment.
     // Expects to get three command-line arguments: loan amount (double),
@@ -43,26 +43,14 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		//double g = loan / 2.0;
-		//while (Math.abs(endBalance(loan, rate, n, g)) > epsilon){
-			//g = g - (endBalance(loan, rate, n, g) / (g * (-1 + (rate / -100))));
-			//double fX = endBalance(loan, rate, n, g); 
-       		//double fXEstimatedDerivative = (endBalance(loan, rate, n, g + epsilon) - fX) / epsilon;  
-        	//g = g - (fX / fXEstimatedDerivative);
-       		//System.out.println("g: " + g);
-			//iterationCounter++;
-		//}
 		iterationCounter = 0;
-        double payment = loan / n;  // Initial guess
-        
+        double payment = loan / n;  
         while (endBalance(loan, rate, n, payment) > epsilon) {
-            payment += 0.001;  // Increment by small amount
+            payment += epsilon; 
             //System.out.println("endBalance(loan, rate, n, payment): " + endBalance(loan, rate, n, payment));
 			iterationCounter++;
         }
-        
         return payment;
-		//return g;
     }
     
     // Uses bisection search to compute an approximation of the *****periodical payment 
@@ -71,24 +59,20 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
-		
-		//System.out.println("iterationCounter: " + iterationCounter);
+		iterationCounter = 0;
     	double L = 1.0, H = loan / 2.0;
     	double g = (L + H) / 2.0;
       	while (Math.abs(endBalance(loan, rate, n, g)) >= epsilon){
-        //System.out.println("H: " + H);
-        //System.out.println("L: " + L);
         if (endBalance(loan, rate, n, g) < 0){
             H = g;
-          } else {       //endBalance(loan, rate, n, g) > 0
+        } else {       //endBalance(loan, rate, n, g) > 0
             L = g;
-          }
-          g = (L + H) / 2.0;
-          iterationCounter++;
-		  //System.out.println("iterationCounter: " + iterationCounter);
         }
-		
-		//iterationCounter --;                          נסיון ראשון במספר 12 ככה
+        g = (L + H) / 2.0;
+        iterationCounter++;
+		//System.out.println("iterationCounter: " + iterationCounter);
+        }
+		//iterationCounter --;                          נסיון ראשון במספר 12+ ככה
 		//System.out.println("iterationCounter: " + iterationCounter);
 		return g;
     }

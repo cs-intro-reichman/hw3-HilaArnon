@@ -25,10 +25,21 @@ public class Anagram {
 		System.out.println(pass ? "test passed" : "test Failed");
 	}  
 
+	//Need this function becuse in preProcess i have to keep the spaces...
+	public static String deleteSpaces(String str) {
+		String newStr = "";
+		for(int i = 0; i < str.length(); i ++){
+			if(str.charAt(i) != ' '){
+				newStr += str.charAt(i);
+			}
+		}
+		return newStr;
+	}
+			
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		String checkStr1 = preProcess(str1);
-		String checkStr2 = preProcess(str2);
+		String checkStr1 = deleteSpaces(preProcess(str1));
+		String checkStr2 = deleteSpaces(preProcess(str2));
 		boolean result = true;
 		
 		if (checkStr1.length() != checkStr2.length()){
@@ -64,8 +75,8 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		String lowerCaseStr = "";
-		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	  //with space because of git....
-		String special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   //without space because of git....
+		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
+		String special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   
 		int i = 0; 
 		while(i < str.length()){
 			char ch = str.charAt(i);
