@@ -88,7 +88,7 @@ public class LoanCalc {
 		  //System.out.println("iterationCounter: " + iterationCounter);
         }
 		
-		iterationCounter --;
+		//iterationCounter --;                          נסיון ראשון במספר 12 ככה
 		//System.out.println("iterationCounter: " + iterationCounter);
 		return g;
     }
