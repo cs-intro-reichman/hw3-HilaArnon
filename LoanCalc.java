@@ -59,58 +59,20 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
-		iterationCounter = 0;                      
-    	double L = 1.0, H = loan / 2.0;
-    	double g = (L + H) / 2.0;
-		//Math.abs(endBalance(loan, rate, n, g))
-      	while (Math.abs(H-L) >= epsilon){
-        if (endBalance(loan, rate, n, g) < 0){
-            H = g;
-        } else {       //endBalance(loan, rate, n, g) > 0
-            L = g;
-        }
-        g = (L + H) / 2.0;
-        iterationCounter++;
-		//System.out.println("iterationCounter: " + iterationCounter);
-        }
-		iterationCounter --;                         //נסיון 16
-		//System.out.println("iterationCounter: " + iterationCounter);
+		iterationCounter = 0;
+		double L = 0.0, H = loan;
+		double g = (L + H) / 2.0;
+	
+		while (Math.abs(endBalance(loan, rate, n, g)) >= epsilon) {
+			if (endBalance(loan, rate, n, g) < 0) {
+				H = g;
+			} else {
+				L = g;
+			}
+			g = (L + H) / 2.0;
+			iterationCounter++;
+		}
+		
 		return g;
     }
 }
-
-/*
- * iterationCounter = 0;
-		double L = loan / n;
-		double H = loan;
-		double g = (H + L) / 2;
-
-		while ((H - L) > epsilon){
-			if (endBalance(loan, rate, n, g) > 0){
-				L = g;
-				g = (H + L) / 2;
-			}
-			else {
-				H = g;
-				g = (H + L) / 2;
-			}
-			iterationCounter++;
-		}
-
-		return g;
- */
-
- /*	double L = loan / n, H = loan, g = (L + H) / 2;
-		iterationCounter = 0;
-		while ((H - L) > epsilon) {
-			g = (L + H) / 2;
-			if (endBalance(loan, rate, n, g) * endBalance(loan, rate, n, L) > 0) {
-				L = g;
-			}
-			else {
-				H = g;
-			}
-			iterationCounter++;
-		}
-		return g;
- */
