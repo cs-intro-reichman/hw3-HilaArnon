@@ -51,8 +51,6 @@ public class Anagram {
 				}
 				lowerCaseStr += ch;
 				//System.out.println("lowerCaseStr: " + lowerCaseStr);
-			} else {
-				lowerCaseStr += ch;
 			}
 			i ++;
 		} 
