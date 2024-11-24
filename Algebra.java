@@ -156,9 +156,13 @@ public class Algebra {
 		if (!x2IsPositive){
 			x2 = minus(0, x2);
 		}
-
+		//minus(x2, times(div(x2, x1), x1));
 		answer = minus(x2,times(div(x2,x1), x1));
+		if (answer < 0) {                               //ok???
+			answer = plus(answer, x1);  
+		}
 
+		//x1 negative and x2 positive       or  x1 negative and x2 negative
 		if ((!x1IsPositive && x2IsPositive) || (!x1IsPositive && !x2IsPositive) ){
 			answer = minus(0,answer);
 		}
