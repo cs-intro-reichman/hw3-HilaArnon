@@ -2,7 +2,7 @@
 public class LoanCalc {
 	
 	static double epsilon = 0.001;  // Approximation accuracy
-	static int iterationCounter;    // Number of iterations 
+	static int iterationCounter = -1;    // Number of iterations 
 	
 	// Gets the loan data and computes the periodical payment.
     // Expects to get three command-line arguments: loan amount (double),
@@ -71,7 +71,7 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
-		iterationCounter = 0;
+		
 		//System.out.println("iterationCounter: " + iterationCounter);
     	double L = 1.0, H = loan / 2.0;
     	double g = (L + H) / 2.0;

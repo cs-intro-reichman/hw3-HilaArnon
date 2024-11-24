@@ -50,7 +50,7 @@ public class TestAnagram {
         boolean test1 = Anagram.preProcess("abc").equals("abc");
         System.out.println("Test 1 (simple lowercase): " + (test1 ? "PASS" : "FAIL"));
         
-        // Test case 2: Preserve spaces
+        // Test case 2: Preserve spaces              0000000000000000000000000000000000
         boolean test2 = Anagram.preProcess("Hello World!").equals("hello world");
         System.out.println("Test 2 (preserve spaces): " + (test2 ? "PASS" : "FAIL"));
         
