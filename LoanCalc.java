@@ -43,16 +43,26 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		double g = loan / 2.0;
-		while (Math.abs(endBalance(loan, rate, n, g)) > epsilon){
-			//g = g - (endBalance(loan, rate, n, g) / (-1 + (rate / -100)));
-			double fX = endBalance(loan, rate, n, g); 
-       		double fXEstimatedDerivative = (endBalance(loan, rate, n, g + epsilon) - fX) / epsilon;  
-        	g = g - fX / fXEstimatedDerivative;
+		//double g = loan / 2.0;
+		//while (Math.abs(endBalance(loan, rate, n, g)) > epsilon){
+			//g = g - (endBalance(loan, rate, n, g) / (g * (-1 + (rate / -100))));
+			//double fX = endBalance(loan, rate, n, g); 
+       		//double fXEstimatedDerivative = (endBalance(loan, rate, n, g + epsilon) - fX) / epsilon;  
+        	//g = g - (fX / fXEstimatedDerivative);
        		//System.out.println("g: " + g);
+			//iterationCounter++;
+		//}
+		iterationCounter = 0;
+        double payment = loan / n;  // Initial guess
+        
+        while (endBalance(loan, rate, n, payment) > epsilon) {
+            payment += 0.001;  // Increment by small amount
+            //System.out.println("endBalance(loan, rate, n, payment): " + endBalance(loan, rate, n, payment));
 			iterationCounter++;
-		}
-		return g;
+        }
+        
+        return payment;
+		//return g;
     }
     
     // Uses bisection search to compute an approximation of the *****periodical payment 
@@ -61,6 +71,7 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
+		iterationCounter = 0;
     	double L = 1.0, H = loan / 2.0;
     	double g = (L + H) / 2.0;
       	while (Math.abs(endBalance(loan, rate, n, g)) >= epsilon){
@@ -74,6 +85,8 @@ public class LoanCalc {
           g = (L + H) / 2.0;
           iterationCounter++;
         }
+		
+		iterationCounter--;
 		return g;
     }
 }
