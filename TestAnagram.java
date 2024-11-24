@@ -28,7 +28,7 @@ public class TestAnagram {
         boolean test4 = Anagram.isAnagram("", "");
         System.out.println("Test 4 (empty strings): " + (test4 ? "PASS" : "FAIL"));
         
-        // Test case 5: Complex anagram with spaces
+        // Test case 5: Complex anagram with spaces       0000000000000000000000000000000000
         boolean test5 = Anagram.isAnagram("William Shakespeare", "I am a weakish speller");
         System.out.println("Test 5 (complex anagram): " + (test5 ? "PASS" : "FAIL"));
         
