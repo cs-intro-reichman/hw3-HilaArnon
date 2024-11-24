@@ -62,17 +62,23 @@ public class LoanCalc {
 		iterationCounter = 0;
 		double L = 0.0, H = loan;
 		double g = (L + H) / 2.0;
-	
+		double lastG = g;
+
 		while (Math.abs(endBalance(loan, rate, n, g)) >= epsilon) {
+			iterationCounter++;
 			if (endBalance(loan, rate, n, g) < 0) {
 				H = g;
 			} else {
 				L = g;
 			}
+			lastG = g;
 			g = (L + H) / 2.0;
+		}
+		
+		if (Math.abs(g - lastG) > epsilon) {
 			iterationCounter++;
 		}
 		
 		return g;
-    }
+	}
 }
