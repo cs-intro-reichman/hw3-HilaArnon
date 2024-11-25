@@ -100,20 +100,18 @@ public class Anagram {
 		String lowerCaseStr = "";
 		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
 		String special = "\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   
-		int i = 0; 
-		while(i < str.length()){
+		for(int i = 0; i < str.length(); i++) {
 			char ch = str.charAt(i);
-			if(ch != ' '){
-				if(special.indexOf(ch) == -1){                       //not a special char
-					int lowerIndex = lowerLetters.indexOf(ch);
-					if (lowerIndex == -1){      //small letter   
-							ch += 32;           //ASCII
-					}
-					lowerCaseStr += ch;
-				}
+			if(ch == ' ') {  // keep spaces
+				lowerCaseStr += ch;
 			}
-			i ++;
-		} 
+			else if(special.indexOf(ch) == -1) {  // not special
+				if(!Character.isLowerCase(ch)) {  
+					ch = Character.toLowerCase(ch);
+				}
+				lowerCaseStr += ch;
+			}
+		}
 		return lowerCaseStr;
 	} 
 	   
