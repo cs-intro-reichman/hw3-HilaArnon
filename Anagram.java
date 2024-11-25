@@ -40,7 +40,7 @@ public class Anagram {
 	public static String preProcessWithSpace(String str) {
 		String lowerCaseStr = "";
 		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
-		String special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   
+		String special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   //הורדתי רווח 22   
 		int i = 0; 
 		while(i < str.length()){
 			char ch = str.charAt(i);

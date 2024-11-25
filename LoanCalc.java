@@ -63,21 +63,21 @@ public class LoanCalc {
     	double L = 0.0, H = loan;
     	double g = (L + H) / 2.0;
     
-   		while (H - L >= epsilon) {  // שינוי תנאי העצירה
+   		while (H - L >= epsilon) {  
     		iterationCounter++;
        		double balance = endBalance(loan, rate, n, g);
         
       	    if (Math.abs(balance) < epsilon) {
-        	    break;  // אם מצאנו פתרון מספיק מדויק, נצא מהלולאה
-       	 }
+        	    break;
+       	 	}
         
-        if (balance < 0) {
-            H = g;
-        } else {
-            L = g;
-        }
+        	if (balance < 0) {
+         	   H = g;
+       		} else {
+          	   L = g;
+       		}
         
-        g = (L + H) / 2.0;
+      		g = (L + H) / 2.0;
     }
     
     return g;
