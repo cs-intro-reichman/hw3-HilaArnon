@@ -40,7 +40,7 @@ public class Anagram {
 	public static String preProcessWithSpace(String str) {
 		String lowerCaseStr = "";
 		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
-		String special = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   //הורדתי רווח 22   
+		String special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";     
 		int i = 0; 
 		while(i < str.length()){
 			char ch = str.charAt(i);
@@ -61,8 +61,8 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 		//String checkStr1 = deleteSpaces(preProcess(str1));
 		//String checkStr2 = deleteSpaces(preProcess(str2));
-		String checkStr1 = preProcessWithSpace(str1);
-		String checkStr2 = preProcessWithSpace(str2);
+		String checkStr1 = preProcess(str1);
+		String checkStr2 = preProcess(str2);
 		boolean result = true;
 		
 		if (checkStr1.length() != checkStr2.length()){
@@ -99,17 +99,18 @@ public class Anagram {
 	public static String preProcess(String str) {
 		String lowerCaseStr = "";
 		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
-		String special = " \"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   
+		String special = "\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   
 		int i = 0; 
 		while(i < str.length()){
 			char ch = str.charAt(i);
-			if(special.indexOf(ch) == -1){                       //not a special char
-				int lowerIndex = lowerLetters.indexOf(ch);
-				if (lowerIndex == -1){      //small letter   
-						ch += 32;           //ASCII
+			if(ch != ' '){
+				if(special.indexOf(ch) == -1){                       //not a special char
+					int lowerIndex = lowerLetters.indexOf(ch);
+					if (lowerIndex == -1){      //small letter   
+							ch += 32;           //ASCII
+					}
+					lowerCaseStr += ch;
 				}
-				lowerCaseStr += ch;
-				//System.out.println("lowerCaseStr: " + lowerCaseStr);
 			}
 			i ++;
 		} 
