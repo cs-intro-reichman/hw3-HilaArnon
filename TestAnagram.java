@@ -28,7 +28,7 @@ public class TestAnagram {
         boolean test4 = Anagram.isAnagram("", "");
         System.out.println("Test 4 (empty strings): " + (test4 ? "PASS" : "FAIL"));
         
-        // Test case 5: Complex anagram with spaces
+        // Test case 5: Complex anagram with spaces          00000000000000       
         boolean test5 = Anagram.isAnagram("William Shakespeare", "I am a weakish speller");
         System.out.println("Test 5 (complex anagram): " + (test5 ? "PASS" : "FAIL"));
         
@@ -50,7 +50,7 @@ public class TestAnagram {
         boolean test1 = Anagram.preProcess("abc").equals("abc");
         System.out.println("Test 1 (simple lowercase): " + (test1 ? "PASS" : "FAIL"));
         
-        // Test case 2: Preserve spaces
+        // Test case 2: Preserve spaces                000000000000000
         boolean test2 = Anagram.preProcess("Hello World!").equals("hello world");
         System.out.println("Test 2 (preserve spaces): " + (test2 ? "PASS" : "FAIL"));
         
