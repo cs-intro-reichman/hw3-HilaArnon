@@ -97,24 +97,33 @@ public class Anagram {
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		String lowerCaseStr = "";
-		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
-		String special = "\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   
-		int i = 0; 
-		while(i < str.length()){
-			char ch = str.charAt(i);
-			if(special.indexOf(ch) == -1){                       //not a special char
-				if(ch != ' '){
-					int lowerIndex = lowerLetters.indexOf(ch);
-					if (lowerIndex == -1){      //small letter   
-							ch += 32;           //ASCII
-					}
-				}
-				lowerCaseStr += ch;
-			}
-			i ++;
-		} 
-		return lowerCaseStr;
+		// String lowerCaseStr = "";
+		// String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
+		// String special = "\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   
+		// int i = 0; 
+		// while(i < str.length()){
+		// 	char ch = str.charAt(i);
+		// 	if(special.indexOf(ch) == -1){                       //not a special char
+		// 		if(ch != ' '){
+		// 			int lowerIndex = lowerLetters.indexOf(ch);
+		// 			if (lowerIndex == -1){      //small letter   
+		// 					ch += 32;           //ASCII
+		// 			}
+		// 		}
+		// 		lowerCaseStr += ch;
+		// 	}
+		// 	i ++;
+		// } 
+		String newStr = "";
+		for(int i = 0; i < str.length(); i ++){
+			char chStr = str.charAt(i);
+			if((chStr >= 'a' && chStr <= 'z') || chStr == ' '){
+				newStr += chStr;
+			} else if (chStr >= 'A' && chStr <= 'Z') {
+				newStr += chStr + 32;
+			}	
+		}
+		return newStr;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
