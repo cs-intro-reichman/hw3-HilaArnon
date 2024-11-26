@@ -26,43 +26,43 @@ public class Anagram {
 	}  
 
 	//Need this function becuse in preProcess i have to keep the spaces...
-	public static String deleteSpaces(String str) {
-		String newStr = "";
-		for(int i = 0; i < str.length(); i ++){
-			if(str.charAt(i) != ' '){
-				newStr += str.charAt(i);
-			}
-		}
-		return newStr;
-	}
+	// public static String deleteSpaces(String str) {
+	// 	String newStr = "";
+	// 	for(int i = 0; i < str.length(); i ++){
+	// 		if(str.charAt(i) != ' '){
+	// 			newStr += str.charAt(i);
+	// 		}
+	// 	}
+	// 	return newStr;
+	// }
 
 	//Need this function becuse in preProcess i have to keep the spaces...
-	public static String preProcessWithSpace(String str) {
-		String lowerCaseStr = "";
-		String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
-		String special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";     
-		int i = 0; 
-		while(i < str.length()){
-			char ch = str.charAt(i);
-			if(special.indexOf(ch) == -1){                       //not a special char
-				int lowerIndex = lowerLetters.indexOf(ch);
-				if (lowerIndex == -1){      //small letter   
-						ch += 32;           //ASCII
-				}
-				lowerCaseStr += ch;
-				//System.out.println("lowerCaseStr: " + lowerCaseStr);
-			}
-			i ++;
-		} 
-		return lowerCaseStr;
-	} 
+	// public static String preProcessWithSpace(String str) {
+	// 	String lowerCaseStr = "";
+	// 	String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
+	// 	String special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";     
+	// 	int i = 0; 
+	// 	while(i < str.length()){
+	// 		char ch = str.charAt(i);
+	// 		if(special.indexOf(ch) == -1){                       //not a special char
+	// 			int lowerIndex = lowerLetters.indexOf(ch);
+	// 			if (lowerIndex == -1){      //small letter   
+	// 					ch += 32;           //ASCII
+	// 			}
+	// 			lowerCaseStr += ch;
+	// 			//System.out.println("lowerCaseStr: " + lowerCaseStr);
+	// 		}
+	// 		i ++;
+	// 	} 
+	// 	return lowerCaseStr;
+	// } 
 			
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 		//String checkStr1 = deleteSpaces(preProcess(str1));
 		//String checkStr2 = deleteSpaces(preProcess(str2));
-		String checkStr1 = preProcessWithSpace(str1);
-		String checkStr2 = preProcessWithSpace(str2);
+		String checkStr1 = preProcess(str1);
+		String checkStr2 = preProcess(str2);
 		boolean result = true;
 		
 		if (checkStr1.length() != checkStr2.length()){
@@ -97,30 +97,13 @@ public class Anagram {
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// String lowerCaseStr = "";
-		// String lowerLetters = "abcdefghijklmnopqrstuvwxyz";	 
-		// String special = "\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";   
-		// int i = 0; 
-		// while(i < str.length()){
-		// 	char ch = str.charAt(i);
-		// 	if(special.indexOf(ch) == -1){                       //not a special char
-		// 		if(ch != ' '){
-		// 			int lowerIndex = lowerLetters.indexOf(ch);
-		// 			if (lowerIndex == -1){      //small letter   
-		// 					ch += 32;           //ASCII
-		// 			}
-		// 		}
-		// 		lowerCaseStr += ch;
-		// 	}
-		// 	i ++;
-		// } 
 		String newStr = "";
 		for(int i = 0; i < str.length(); i ++){
 			char chStr = str.charAt(i);
 			if((chStr >= 'a' && chStr <= 'z') || chStr == ' '){
 				newStr += chStr;
 			} else if (chStr >= 'A' && chStr <= 'Z') {
-				newStr += chStr + 32;
+				newStr += (char)(chStr + 32);
 			}	
 		}
 		return newStr;
